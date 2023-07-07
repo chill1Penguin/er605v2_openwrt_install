@@ -35,7 +35,7 @@ make
   
  *On the computer:*
  ```
- cd <the folder containing the er605v2_write_sysupgrade.sh script and the sysupgrade image>
+ cd <the folder containing the shell scripts and the sysupgrade image>
  python3 -m http.server 8000 -b <your computer's IP address>
 ```
  *On the router over SSH:* 

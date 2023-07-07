@@ -33,6 +33,7 @@ done
 
 if [ -z $vol_bootloader ] || [ -z $vol_tddp ] || [ -z $vol_firmware_info ] || [ -z $vol_device_info ] || [ -z $vol_kernel ] ; then
    echo "ERROR: A required UBI volume was not found."
+   exit 1
 fi
 
 dd if=/dev/ubi0_$vol_bootloader of=/tmp/bootloader.img
