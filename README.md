@@ -42,8 +42,7 @@ make
 cd /tmp
 wget http://<your computer's IP address>:8000/er605v2_write_sysupgrade.sh
 chmod +x er605v2_write_sysupgrade.sh
-wget http://<your computer's IP address>:8000/<your openwrt-sysupgrade.bin>
-./er605v2_write_sysupgrade.sh <your openwrt-sysupgrade.bin>
+./er605v2_write_sysupgrade.sh http://<your computer's IP address>:8000/<your openwrt-sysupgrade.bin>
 ``` 
 10. Reboot the router.
 11. Your router should now boot into OpenWrt! :smile:
