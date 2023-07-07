@@ -14,7 +14,9 @@ Currently built using a minimized OpenWrt 23.05.0-rc2 initramfs image. You can u
 
 ## Steps to Install
 
- 1. Open a terminal and run the following commands
+**:warning: Backup your mtd partitions before commencing with the install. After the install, you will NOT be able to use the recovery mode of the ER605 to flash a factory image to recover from a bad install. You will need to use ubiformat to reflash your mtd3 (firmware) partition if you ever want to restore to the default firmware. :warning:**
+
+ 1. Open a terminal and run the following commands:
 ```
 git clone https://github.com/chill1Penguin/er605v2_openwrt_install
 cd er605v2_openwrt_install
