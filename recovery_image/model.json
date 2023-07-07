@@ -1,0 +1,269 @@
+{
+  "build_config": {
+    "build_folder": ".",
+    "software_version": "2.0.0",
+    "firmware_format": "ER605v2_un"
+  },
+  "partition-layout": [{
+    "disk-size": "0x00140000",
+    "partition-table": [
+      {
+        "name": "Bootloader",
+        "base": "0x00000000",
+        "size": "0x00080000",
+        "attr": "0x11111111",
+        "write_to_flash": true,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": "model.json"
+      },
+	  {
+        "name": "Config",
+        "base": "0x00080000",
+        "size": "0x00080000",
+        "attr": "0x11111111",
+        "write_to_flash": true,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+	  {
+        "name": "Factory",
+        "base": "0x00100000",
+        "size": "0x00040000",
+        "attr": "0x11111111",
+        "write_to_flash": true,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      }
+    ]
+  },
+  {
+    "disk-size": "0x07ec0000",
+	"disk-align": "0x20000",
+    "partition-table": [
+      {
+        "name": "partition-table",
+        "base": "0x00000000",
+        "size": "0x00020000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "support-list",
+        "base": "0x00000000",
+        "size": "0x00020000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": true,
+        "encap_type": "general-header",
+        "file_path": "model_files/support-list.json"
+      },
+      {
+        "name": "device-info",
+        "base": "0x00000000",
+        "size": "0x00020000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "device-info.b",
+        "base": "0x00000000",
+        "size": "0x00020000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "tddp",
+        "base": "0x00000000",
+        "size": "0x00020000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "tddp.b",
+        "base": "0x00000000",
+        "size": "0x00020000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "bootloader",
+        "base": "0x00000000",
+        "size": "0x00100000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "kernel",
+        "base": "0x00000000",
+        "size": "0x00500000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": "openwrt-initramfs.bin"
+      },
+      {
+        "name": "rootfs",
+        "base": "0x00000000",
+        "size": "0x01200000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "firmware-info",
+        "base": "0x00000000",
+        "size": "0x00040000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "extra-para",
+        "base": "0x00000000",
+        "size": "0x00040000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": true,
+        "encap_type": "general-header",
+        "file_path": "model_files/extra-para.json"
+      },
+      {
+        "name": "log",
+        "base": "0x00000000",
+        "size": "0x00200000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "rootfs_data",
+        "base": "0x00000000",
+        "size": "0x00a00000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "bootloader.b",
+        "base": "0x00000000",
+        "size": "0x00100000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "kernel.b",
+        "base": "0x00000000",
+        "size": "0x00500000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": true,
+        "encap_type": "raw",
+        "file_path": "openwrt-initramfs.bin"
+      },
+      {
+        "name": "rootfs.b",
+        "base": "0x00000000",
+        "size": "0x01200000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "firmware-info.b",
+        "base": "0x00000000",
+        "size": "0x00040000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "extra-para.b",
+        "base": "0x00000000",
+        "size": "0x00040000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": true,
+        "encap_type": "general-header",
+        "file_path": "model_files/extra-para.b.json"
+      },
+      {
+        "name": "log.b",
+        "base": "0x00000000",
+        "size": "0x00200000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "rootfs_data.b",
+        "base": "0x00000000",
+        "size": "0x00a00000",
+        "attr": "0x22222222",
+        "write_to_flash": false,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "ubi",
+        "base": "0x00000000",
+        "size": "0x07cc0000",
+        "attr": "0x33333333",
+        "write_to_flash": true,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      },
+      {
+        "name": "panic-oops",
+        "base": "0x07cc0000",
+        "size": "0x00200000",
+        "attr": "0x44444444",
+        "write_to_flash": true,
+        "write_to_up": false,
+        "encap_type": "raw",
+        "file_path": ""
+      }
+    ]
+  }]
+}
+
