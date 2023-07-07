@@ -1,3 +1,4 @@
+
 # TP-Link ER605 v2 OpenWrt Installer
 This repository contains the tools and scripts needed to install OpenWrt on a factory-flashed TP-Link ER605 hardware version 2 router.
 
@@ -30,7 +31,7 @@ make
  6. Wait for the device to reboot.
  7. Change your computer's IP address to the `192.168.1.x` subnet.
  8. SSH into the device using the default OpenWrt IP address (`ssh root@192.168.1.1`).
- 9. Upload the `er605v2_write_sysupgrade.sh` shell script to the device and execute it. For example:
+ 9. Upload the two shell scripts to the device. For example:
   
  *On the computer:*
  ```
@@ -40,10 +41,18 @@ make
  *On the router over SSH:* 
 ```
 cd /tmp
+wget http://<your computer's IP address>:8000/er605v2_update_ubi_layout.sh
 wget http://<your computer's IP address>:8000/er605v2_write_sysupgrade.sh
-chmod +x er605v2_write_sysupgrade.sh
-./er605v2_write_sysupgrade.sh http://<your computer's IP address>:8000/<your openwrt-sysupgrade.bin>
+chmod +x er605v2_update_ubi_layout.sh er605v2_write_sysupgrade.sh 
 ``` 
-10. Reboot the router.
-11. Your router should now boot into OpenWrt! :smile:
+ 10. Update the ER605 UBI layout:
+```
+./er605v2_update_ubi_layout.sh 
+```
+ 11. Write the sysupgrade image:
+```
+./er605v2_write_sysupgrade.sh http://<your computer's IP address>:8000/<your openwrt-sysupgrade.bin>
+```
+ 12. Reboot the router.
+ 13. Your router should now boot into OpenWrt! :smile:
 
