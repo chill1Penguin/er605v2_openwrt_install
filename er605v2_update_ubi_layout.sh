@@ -32,7 +32,7 @@ while [ $i -lt $vol_count ]; do
 done
 
 if [ -z $vol_bootloader ] || [ -z $vol_tddp ] || [ -z $vol_firmware_info ] || [ -z $vol_device_info ] || [ -z $vol_kernel ] ; then
-   echo "ERROR: A required UBI volume was not found."
+   echo "ERROR: A required UBI volume was not found. If you have already run this script, you don't need to run it again."
    exit 1
 fi
 

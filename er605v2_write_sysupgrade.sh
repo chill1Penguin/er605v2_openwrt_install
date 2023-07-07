@@ -3,7 +3,7 @@
 kernel_name=$(cat /sys/class/ubi/ubi0_5/name)
 rootfs_name=$(cat /sys/class/ubi/ubi0_6/name)
 
-if [ kernel_name != "kernel" ] || [ rootfs_name != "rootfs" ] ; then
+if [ $kernel_name != "kernel" ] || [ $rootfs_name != "rootfs" ] ; then
     echo "The UBI layout is wrong. Have you run er605v2_update_ubi_layout.sh yet?"
     exit 1
 fi
