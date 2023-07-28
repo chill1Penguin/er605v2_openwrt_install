@@ -20,8 +20,8 @@ Currently built using a minimized OpenWrt 23.05.0-rc2 initramfs image. You can u
 ```
 python3 er605rootpw.py
 ```
- 5. SSH into the ER605 and login using the `root` username. On newer firmwares, you may need to run `enable` and then `debug` after logging in to get to the SSH shell.
- 6. Download openwrt-initramfs-compact.bin and er605v2_write_initramfs.sh to the ER605 (run these commands in the SSH shell).
+ 4. SSH into the ER605 and login using the `root` username. On newer firmwares, you may need to run `enable` and then `debug` after logging in to get to the SSH shell.
+ 5. Download openwrt-initramfs-compact.bin and er605v2_write_initramfs.sh to the ER605 (run these commands in the SSH shell).
  ```
  cd /tmp
  wget http://<URL to openwrt-initramfs-compact.bin>
@@ -29,7 +29,7 @@ python3 er605rootpw.py
  chmod +x er605v2_write_initramfs.sh
 ```
  6. Run er605v2_write_initramfs.sh script to flash the initramfs image.
- ```
+```
  ./er605v2_write_initramfs.sh openwrt-initramfs-compact.bin
 ```
  7. Reboot the ER605 and wait for it to reboot.
