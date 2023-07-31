@@ -19,15 +19,15 @@ The initramfs image is currently using OpenWrt version 23.05.0-rc2. If you would
  3. SSH into your ER605. Follow the steps below for the firmware version you have installed:<br>
 ***v2.0.1 and below:*** Login using the username `root` and the "root password" generated in the previous step.<br>
 ***v2.1.1 and above:*** Login using your web configuration GUI credentials. Then run the `enable` command followed by the `debug` command. When you are prompted for a password, enter the "CLI debug mode password" generated in the previous step.
- 4. Backup your MTD partitions (recommended). The backup process will not be covered here. You can find some more information on how to do this here: [https://openwrt.org/docs/guide-user/installation/generic.backup?do=#create_full_mtd_backup](https://openwrt.org/docs/guide-user/installation/generic.backup?do=#create_full_mtd_backup)
- 5. Download openwrt-initramfs-compact.bin and er605v2_write_initramfs.sh to the ER605 (run these commands in the SSH shell).
+ 4. Backup your MTD partitions (recommended). The backup process will not be covered in these instructions. You can find some more information on how to do this here: [https://openwrt.org/docs/guide-user/installation/generic.backup?do=#create_full_mtd_backup](https://openwrt.org/docs/guide-user/installation/generic.backup?do=#create_full_mtd_backup)
+ 5. Download openwrt-initramfs-compact.bin and er605v2_write_initramfs.sh to the ER605 (run these commands in the SSH shell):
  ```
  cd /tmp
  curl -o er605v2_write_initramfs.sh https://raw.githubusercontent.com/chill1Penguin/er605v2_openwrt_install/main/er605v2_write_initramfs.sh
  curl -o openwrt-initramfs-compact.bin https://raw.githubusercontent.com/chill1Penguin/er605v2_openwrt_install/main/openwrt-initramfs-compact.bin
  chmod +x er605v2_write_initramfs.sh
  ```
- 6. Verify the checksum of the openwrt-initramfs-compact.bin image. It should match the checksum found in the [sha256sums](sha256sums) file. You can get the checksum by running:
+ 6. Verify the checksum of the openwrt-initramfs-compact.bin image. It should match the checksum found in the [md5sums](md5sums) file. You can get the checksum by running:
  ```
  sha256sum openwrt-initramfs-compact.bin
  ```
