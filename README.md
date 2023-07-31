@@ -29,7 +29,7 @@ The initramfs image is currently using OpenWrt version 23.05.0-rc2. If you would
  ```
  6. Verify the checksum of the openwrt-initramfs-compact.bin image. It should match the checksum found in the [md5sums](md5sums) file. You can get the checksum by running:
  ```
- sha256sum openwrt-initramfs-compact.bin
+ md5sum openwrt-initramfs-compact.bin
  ```
  7. Run er605v2_write_initramfs.sh script to flash the initramfs image.
  ```
