@@ -1,0 +1,18 @@
+#!/bin/sh
+
+echo "Content-Type: text/plain"
+echo
+
+if [ $CONTENT_TYPE != "application/octet-stream" ]; then
+    echo -n "ERROR: Wrong content type."
+    exit 1
+fi
+
+cat > /tmp/firmware.bin
+sysupgrade_result=$(sysupgrade -q /tmp/firmware.bin 2>&1)
+
+if [ -z $sysupgrade_result ]; then
+    echo -n "OK"
+else
+    echo -n "ERROR: $sysupgrade_result"
+fi

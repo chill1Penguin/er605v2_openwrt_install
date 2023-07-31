@@ -1,0 +1,36 @@
+#!/bin/sh
+
+echo "Content-Type: text/plain"
+echo
+
+volumes_count=$(cat /sys/class/ubi/ubi0/volumes_count)
+if [ $volumes_count != "8" ] ; then
+    echo -n "Incorrect volume count."
+    exit 1
+fi
+
+
+bootloader_name=$(cat /sys/class/ubi/ubi0_0/name)
+firmware_info_name=$(cat /sys/class/ubi/ubi0_1/name)
+device_info_name=$(cat /sys/class/ubi/ubi0_2/name)
+tddp_name=$(cat /sys/class/ubi/ubi0_3/name)
+extra_para_name=$(cat /sys/class/ubi/ubi0_4/name)
+kernel_name=$(cat /sys/class/ubi/ubi0_5/name)
+rootfs_name=$(cat /sys/class/ubi/ubi0_6/name)
+rootfs_data_name=$(cat /sys/class/ubi/ubi0_7/name)
+
+if
+[ $bootloader_name != "bootloader" ] ||
+[ $firmware_info_name != "firmware-info" ] ||
+[ $device_info_name != "device-info" ] ||
+[ $tddp_name != "tddp" ] ||
+[ $extra_para_name != "extra-para" ] ||
+[ $kernel_name != "kernel" ] ||
+[ $rootfs_name != "rootfs" ] ||
+[ $rootfs_data_name != "rootfs_data" ] ;
+then
+    echo -n "Wrong UBI layout."
+    exit 1
+fi
+
+echo -n "OK"

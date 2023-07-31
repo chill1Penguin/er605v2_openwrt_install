@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ER605 v2 Installer</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 2em;
+      }
+
+      button, input[type=submit]
+      {
+        font-size: large;
+      }
+
+      .green
+      {
+        color: green;
+      }
+
+      .red
+      {
+        color: red;
+      }
+
+      .orange
+      {
+        color: orange;
+      }
+
+      div
+      {
+        border: 1px solid grey;
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ER605 v2 Installer</h1>
+
+    <h3>Step 1: Adjust UBI Layout</h3>
+    <div>
+      <p>UBI Layout Status: <b><span id="ubiOk" class="red">Checking...</span></b></p>
+      <p><button id="adjustUbiLayoutBtn" onclick="adjustUbiLayout()" disabled>Adjust UBI Layout</button></p>
+    </div>
+
+    <h3>Step 2: Flash Sysupgrade Image</h3>
+    <div id="step2div">
+      <form id="sysupgradeForm" enctype="multipart/form-data" method="post" onsubmit="doSysupgrade(); return false;">
+        <p><label for="formFileInput">Choose a sysupgrade image:</label>
+        <input type="file" id="formFileInput" name="filedata"></p>
+        <p><input type="submit" id="flashBtn" value="Flash" disabled></p>
+      </form>
+    </div>
+    <script type="text/javascript">
+      window.onload = function(event) {
+        checkUbi();
+      }
+
+      function checkUbi() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+          var ubiOk = document.getElementById("ubiOk");
+          var flashBtn = document.getElementById("flashBtn");
+          var adjustUbiLayoutBtn = document.getElementById("adjustUbiLayoutBtn");
+
+          if (this.status == 200) {
+            if (this.responseText == "OK") {
+              ubiOk.innerText = "ADJUSTED";
+              ubiOk.className = "green";
+              adjustUbiLayoutBtn.disabled = true;
+              flashBtn.disabled = false;
+            } else {
+              ubiOk.innerText = "NOT ADJUSTED";
+              ubiOk.className = "red";
+              adjustUbiLayoutBtn.disabled = false;
+              flashBtn.disabled = true;
+            }
+          } else {
+            ubiOk.innerText = "ERROR SUBMITTING REQUEST";
+            ubiOk.className = "red";
+            adjustUbiLayoutBtn.disabled = false;
+            flashbtn.disabled = true;
+          }
+        }
+        xhttp.open("GET", "/cgi-bin/checkubilayout", true);
+        xhttp.send();
+      }
+
+      function adjustUbiLayout() {
+        var ubiOk = document.getElementById("ubiOk");
+        var adjustUbiLayoutBtn = document.getElementById("adjustUbiLayoutBtn");
+
+        ubiOk.innerHTML = "Adjusting...";
+        ubiOk.className = "orange";
+        adjustUbiLayoutBtn.disabled = true;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+          var ubiOk = document.getElementById("ubiOk");
+          var adjustUbiLayoutBtn = document.getElementById("adjustUbiLayoutBtn");
+
+          if (this.status == 200) {
+            if (this.responseText == "OK") {
+              checkUbi();
+            } else {
+              ubiOk.innerHTML = this.responseText;
+              ubiOk.className = "red";
+              adjustUbiLayoutBtn.disabled = false;
+            }
+          } else {
+            ubiOk.innerHTML = "ERROR SUBMITTING REQUEST";
+            ubiOk.className = "red";
+            adjustUbiLayoutBtn.disabled = false;
+          }
+        }
+        xhttp.open("GET", "/cgi-bin/updateubilayout", true);
+        xhttp.send();
+      }
+
+      function doSysupgrade() {
+        var fileInput = document.getElementById('formFileInput');
+        if (fileInput.files.length != 1) {
+          alert("Please select one file to upload.");
+          return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function() {
+          if (this.error) {
+            var step2div = document.getElementById("step2div");
+            step2div.textContent = "ERROR: Failed to read the file to upload. Refresh this web page and try again.";
+            step2div.className = "red";
+            return;
+          }
+
+          var xhttp = new XMLHttpRequest();
+          xhttp.onload = function() {
+            var step2div = document.getElementById("step2div");
+
+            if (this.status == 200 && this.response == "OK") {
+              step2div.textContent = "SUCCESS! Reboot the router to boot into the new firmware.";
+              step2div.className = "green";
+            } else {
+              step2div.textContent = this.response + " Refresh this web page and try again.";
+              step2div.className = "red";
+            }
+          }
+          
+          xhttp.open("POST", "/cgi-bin/dosysupgrade");
+          xhttp.setRequestHeader("Content-Type", "application/octet-stream");
+          xhttp.send(this.result);
+        }
+
+        reader.readAsArrayBuffer(fileInput.files[0]);
+        
+        document.getElementById("step2div").textContent = "Uploading and flashing... The router reboot when the flash is complete.";
+      }
+    </script>
+  </body>
+</html>
