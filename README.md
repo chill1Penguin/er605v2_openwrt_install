@@ -1,7 +1,4 @@
 
-
-
-
 # TP-Link ER605 v2 OpenWrt Installer
 This repository provides a method to install OpenWrt on a factory-flashed TP-Link ER605 hardware version 2 router.
 
@@ -36,6 +33,6 @@ The initramfs image is currently using OpenWrt version 23.05.0-rc2. If you would
  ./er605v2_write_initramfs.sh openwrt-initramfs-compact.bin
  ```
  8. Reboot the ER605 and wait for it to reboot.
- 9. Open a web browser and navigate to [http://192.168.1.1/](http://192.168.1.1/)
+ 9. Open a web browser and navigate to [http://192.168.1.1/](http://192.168.1.1/). If the page does not load, try waiting a bit longer or clearing your browser cache.
  10. Follow the steps on the web page. You can find a sysupgrade image at [https://downloads.openwrt.org](https://downloads.openwrt.org). Click [here](https://downloads.openwrt.org/releases/23.05.0-rc2/targets/ramips/mt7621/openwrt-23.05.0-rc2-ramips-mt7621-tplink_er605-v2-squashfs-sysupgrade.bin) to download the v23.05.0-rc2 sysupgrade image.
  11. After rebooting, your ER605 should boot into OpenWrt! :smile:
