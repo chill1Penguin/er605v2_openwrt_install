@@ -2,16 +2,16 @@
 # TP-Link ER605 v2 OpenWrt Installer
 This repository provides a method to install OpenWrt on a factory-flashed TP-Link ER605 hardware version 2 router.
 
-**:warning: Use at your own risk. Your device may become bricked if you do something wrong or as a result of a bug. :warning:**
+**:warning: Use at your own risk. Your device may become bricked if you do something wrong or as a result of a bug.**
 
 ## Initramfs Image
 The initramfs image is based on OpenWrt version 23.05.0. If you would like to build your own initramfs image, see the files in the image-build-files directory. The initramfs image needs to be 5,242,880 (0x00500000) bytes or smaller in size to fit into the factory kernel UBI volume.
 
 ## Steps to Install
 
-**:warning: After the install, you will NOT be able to use the recovery mode of the ER605 to flash a factory image to recover from a bad install. You will need to use ubiformat to reflash your mtd3 (firmware) partition if you ever want to restore to the default firmware. :warning:**
+**:warning: After the install, you will NOT be able to use the recovery mode of the ER605 to flash a factory image to recover from a bad install. You will need to use ubiformat to reflash your mtd3 (firmware) partition if you ever want to restore to the default firmware.**
 
-**:information_source: If you are using stock firmware above v2.1.2, you will need to downgrade to v2.1.2 or below before installing. :information_source:**
+**:information_source: If you are using stock firmware above v2.1.2, you will need to downgrade to v2.1.2 or below before installing.**
 
  1. Enable SSH on your ER605 by logging into the web configuration GUI, navigating to System Tools > Diagnostics > Remote Assistance, and enabling Remote Assistance.
  2. Generate your shell password by clicking [here](https://chill1penguin.github.io/er605v2_openwrt_install/er605rootpw.html).
