@@ -15,7 +15,7 @@ The initramfs image is based on OpenWrt version 23.05.0. If you would like to bu
 
  1. Enable SSH on your ER605 by logging into the web configuration GUI, navigating to System Tools > Diagnostics > Remote Assistance, and enabling Remote Assistance.
  2. Generate your shell password by clicking [here](https://chill1penguin.github.io/er605v2_openwrt_install/er605rootpw.html).
- 3. SSH into your ER605. Follow the steps below for the firmware version you have installed:<br>
+ 3. SSH into your ER605. Use `ssh -o hostkeyalgorithms=ssh-rsa` if your ssh client complains `no matching host key type`. Follow the steps below for the firmware version you have installed:<br>
 ***v2.0.1 and below:*** Login using the username `root` and the "root password" generated in the previous step.<br>
 ***v2.1.1 and v2.1.2:*** Login using your web configuration GUI credentials. Then run the `enable` command followed by the `debug` command. When you are prompted for a password, enter the "CLI debug mode password" generated in the previous step.<br>
 ***Above v2.1.2:*** Downgrade stock firmware to v2.1.2 or below.
