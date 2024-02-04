@@ -25,14 +25,19 @@
     <h4>Enter the username used to login to the web configuration GUI.</h4>
     <p><label for="inputUsername">Username:</label> <input type="text" id="inputUsername" oninput="getPw()"></p>
     <p><b>Root password:</b> <span id="result"></span></p>
-    <p><b>CLI debug mode password:</b> <span id="resultCli"></span></p>
+    <p style="margin-bottom: 3px;"><b>CLI debug mode password</b></p>
+    <p style="margin-top: 0px;">
+      v2.1.2 and below: <span id="resultCli212"></span><br>
+      v2.2.2 and above: <span id="resultCli222"></span>
+    </p>
     <script type="text/javascript">
       function getPw() {
         var mac = document.getElementById("inputMacAddress").value.trim().replaceAll("-", ":").toUpperCase();
         var username = document.getElementById("inputUsername").value.trim();
 
         document.getElementById("result").textContent = md5(mac + username).substr(0, 16);
-        document.getElementById("resultCli").textContent = md5(mac + "admin").substr(0, 16);
+        document.getElementById("resultCli212").textContent = md5(mac + "admin").substr(0, 16);
+        document.getElementById("resultCli222").textContent = md5(mac + "admin" + mac + "admin").substr(0, 16);
       }
     </script>
   </body>
