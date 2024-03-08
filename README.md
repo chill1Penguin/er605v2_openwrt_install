@@ -33,6 +33,6 @@ The initramfs image is based on OpenWrt version 23.05.0. If you would like to bu
  ./er605v2_write_initramfs.sh openwrt-initramfs-compact.bin
  ```
  8. Reboot the ER605 and wait for it to reboot.
- 9. Open a web browser and navigate to [http://192.168.1.1/](http://192.168.1.1/). If the page does not load, try waiting a bit longer or clearing your browser cache.
+ 9. Open a web browser and navigate to [http://192.168.1.1/](http://192.168.1.1/). If the page does not load, try waiting a bit longer or clearing your browser cache. ( _Having another router or DHCP server connected to the ER605 could cause page load issues due to an IP address conflict. If you cannot access the web page, disconnect all unnecessary devices from the ER605 and try again._)
  10. Follow the steps on the web page. You can find a sysupgrade image at [https://downloads.openwrt.org](https://downloads.openwrt.org). Click [here](https://downloads.openwrt.org/releases/23.05.0/targets/ramips/mt7621/openwrt-23.05.0-ramips-mt7621-tplink_er605-v2-squashfs-sysupgrade.bin) to download the v23.05.0 sysupgrade image.
  11. After rebooting, your ER605 should boot into OpenWrt! :smile:
