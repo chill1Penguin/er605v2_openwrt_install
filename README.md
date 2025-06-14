@@ -14,7 +14,7 @@ The initramfs image is based on OpenWrt version 23.05.0. If you would like to bu
 > **After the install, you will NOT be able to use the recovery mode of the ER605 to flash a factory image to recover from a bad install. You will need to use ubiformat to reflash your mtd3 (firmware) partition if you ever want to restore to the default firmware.**
 
 > [!IMPORTANT] 
-> **DO NOT connect the router to the internet.** If you do you will need an uknown signed token that is generated online to access the router through SSH. To avoid this do not connect the router to the internet and execute this procedure conecting it only to your PC through LAN port.
+> **DO NOT connect the router to the internet.** If you do you will need an unknown signed token that is generated online to access the router through SSH. To avoid this do not connect the router to the internet and execute this procedure conecting it only to your PC through LAN port.
 
  1. Enable SSH on your ER605 by logging into the web configuration GUI, navigating to System Tools > Diagnostics > Remote Assistance, and enabling Remote Assistance.
  2. Generate your shell password by clicking [here](https://chill1penguin.github.io/er605v2_openwrt_install/er605rootpw.html).
@@ -22,8 +22,11 @@ The initramfs image is based on OpenWrt version 23.05.0. If you would like to bu
 ***v2.0.1 and below:*** Login using the username `root` and the "root password" generated in the previous step.<br>
 ***v2.1.1 and above:*** Login using your web configuration GUI credentials. Then run the `enable` command followed by the `debug` command. When you are prompted for a password, enter the "CLI debug mode password" generated in the previous step.
  4. Backup your MTD partitions (recommended). You can follow a way to achieve this [here](MTD_backup/README.md).
- 5. Transfer the image files `openwrt-initramfs-compact.bin`and `er605v2_write_initramfs.sh` to the ER605. To do this offline run a simple web server on your PC to serve the files running the following:
+ 5. Download to to your PC and transfer the image files `openwrt-initramfs-compact.bin`and `er605v2_write_initramfs.sh` to the ER605. To do this offline run a simple web server on your PC to serve the files running the following:
 ```shell
+curl -o er605v2_write_initramfs.sh https://raw.githubusercontent.com/chill1Penguin/er605v2_openwrt_install/main/er605v2_write_initramfs.sh
+curl -o openwrt-initramfs-compact.bin https://raw.githubusercontent.com/chill1Penguin/er605v2_openwrt_install/main/openwrt-initramfs-compact.bin
+
 for i in er605v2_write_initramfs.sh openwrt-initramfs-compact.bin; do
     { echo -ne "HTTP/1.0 200 OK\r\nContent-Length: $(wc -c < $i )\r\n\r\n"; cat $i; } | nc -l -p 8080 ;
 done
@@ -32,7 +35,7 @@ And then run these commands in the SSH shell of the ER605: (Replace the IP with 
  ```shell
  cd /tmp
  curl -o er605v2_write_initramfs.sh http://192.168.0.100:8080/er605v2_write_initramfs.sh
- curl -o openwrt-initramfs-compact.bin http://192.168.0.100:8080 openwrt-initramfs-compact.bin
+ curl -o openwrt-initramfs-compact.bin http://192.168.0.100:8080/openwrt-initramfs-compact.bin
  chmod +x er605v2_write_initramfs.sh
  ```
 
