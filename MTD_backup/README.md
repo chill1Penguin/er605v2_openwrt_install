@@ -13,7 +13,7 @@ BACKUP_HOST="192.168.0.100"  # Your laptop's IP address
 BACKUP_PORT="9999"            # Port to use for transfer
 echo "Backup host ${BACKUP_HOST}"
 
-echo -n > /tmp/md5sum
+echo -n > /tmp/md5sums
 
 cat /proc/mtd | tail -n+2 | while read; do
   MTD_DEV=$(echo ${REPLY} | cut -f1 -d:)
