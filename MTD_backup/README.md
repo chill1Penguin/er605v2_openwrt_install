@@ -1,5 +1,5 @@
 # MTD partitions backup
-This steps provide a method of backing up TP-Link ER605 MTD partitions before installing OpenWRT in case you want to fall back to the original firmware. These instructions and code are based on this How-To [https://openwrt.org/docs/guide-user/installation/generic.backup?do=#create_full_mtd_backup](https://openwrt.org/docs/guide-user/installation/generic.backup?do=#create_full_mtd_backup)
+This steps provide a method of backing up TP-Link ER605 MTD partitions before installing OpenWRT in case you want to fall back to the original firmware. These instructions and code are based on this How-To [https://openwrt.org/docs/guide-user/installation/generic.backup?do=#create_full_mtd_backup](https://openwrt.org/docs/guide-user/installation/generic.backup?do=#create_full_mtd_backup) and [these](https://github.com/chill1Penguin/er605v2_openwrt_install/issues/21#issue-2843453155)  intructions.
 
 > [!WARNING] 
 > **Use at your own risk. Your device may become bricked if you do something wrong or as a result of a bug.** It is assumed that you understand what these scripts do and what you are doing.
@@ -28,13 +28,13 @@ cat /proc/mtd | tail -n+2 | while read; do
   # Then send the data
   dd if=/dev/${MTD_DEV}ro | busybox nc ${BACKUP_HOST} ${BACKUP_PORT}
   SUM=$(dd if=/dev/${MTD_DEV}ro | md5sum | cut -f1 -d" ")
-  echo -e "$SUM\t$FILENAME" >> /tmp/md5sum
+  echo -e "$SUM\t$FILENAME" >> /tmp/md5sums
   # Small delay between files
   sleep 1
 done
 
-echo md5sum | busybox nc ${BACKUP_HOST} ${BACKUP_PORT}
-dd if=/tmp/md5sum | busybox nc ${BACKUP_HOST} ${BACKUP_PORT}
+echo md5sums | busybox nc ${BACKUP_HOST} ${BACKUP_PORT}
+dd if=/tmp/md5sums | busybox nc ${BACKUP_HOST} ${BACKUP_PORT}
 
 EOF
 
@@ -91,12 +91,12 @@ Receiving mtd23_log.b.backup...
 Receiving mtd24_rootfs_data.b.backup...
 Receiving mtd25_log_recovery.backup...
 Receiving mtd26_database.backup...
-Receiving md5sum...
+Receiving md5sums...
 ^C
 $ 
 ```
 
 Backup takes around 5 minutes. Don't be impatient.
 
-4. Once transfer is complete interrupt the receive script in your PC and run `md5sum -c md5sum` to verify transfers are correct.
+4. Once transfer is complete interrupt the receive script in your PC and run `md5sum -c md5sums` to verify transfers are correct.
 
